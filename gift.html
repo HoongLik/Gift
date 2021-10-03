@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>嘉雯希望你喜欢这个小小的惊喜</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+			background-attachment: fixed;
+            overflow-y: hidden;
+        }
+		
+        body {
+            /* The image used */
+            background-image: url(https://i.imgur.com/QBih63d.jpg);
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .alignment {
+            margin-top: 70px;
+        }
+        
+        .headStyle {
+            margin-top: -50px;
+            margin-bottom: 50px;
+            text-align:center;
+            color:Tomato;
+            font-size: 1em;
+        }
+        
+        .contentText {
+            color: Tomato;
+            text-align:center;
+        }
+        
+        .results{
+            display: none;
+        }
+
+        @media screen and (max-width: 1024px) { /* Specific to this particular image */
+            .bg {
+                width:100%;
+				height: 100%;
+            }
+			
+			body{
+				height: 600px;		
+			}
+			
+			.tags{
+				margin-top: -80px;
+			}
+            
+            .alignment {
+                margin-top: 70px;
+            }
+            
+            .confirmation{
+                margin-left: 70px;
+            
+            }
+        }
+    <style>
+        section {
+            background-size: cover;
+            width: 100%;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .snow1 {
+            background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: snowOne 10s infinite linear;
+        }
+
+        .snow2 {
+            background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: snowTwo 10s infinite linear;
+            background-size: 300px;
+            filter: blur(1px);
+        }
+
+        .snow3 {
+            background: url(https://designshack.net/tutorialexamples/letitsnow/snow.png);
+            background-repeat: repeat;
+            width: 100%;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: snowThree 10s infinite linear;
+            background-size: 800px;
+            filter: blur(2px);
+        }
+
+        @keyframes snowOne {
+            0% {
+                background-position: 0px 0px;
+            }
+
+            100% {
+                background-position: 100px 750px;
+            }
+        }
+
+        @keyframes snowTwo {
+            0% {
+                background-position: 0px -100px;
+            }
+
+            100% {
+                background-position: 0px 750px;
+            }
+        }
+
+        @keyframes snowThree {
+            0% {
+                background-position: 0px 100px;
+            }
+
+            100% {
+                background-position: 300px 750px;
+            }
+        }
+		
+		@media screen and (max-width: 1024px) { /* Specific to this particular image */
+            section {
+				height: 1200px;
+			}
+
+			.snow1 {
+				height: 3000px;
+			}
+
+			.snow2 {
+				height: 3000px;
+			}
+
+			.snow3 {
+				height: 3000px;
+			}
+        }
+    </style>
+    <style>
+    .overlay {
+      height: 100%;
+      width: 100%;
+      display: block;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0, 0.9);
+    }
+
+    .overlay-content {
+      position: relative;
+      top: 25%;
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .overlay a {
+      padding: 8px;
+      text-decoration: block;
+      font-size: 36px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .overlay a:hover, .overlay a:focus {
+      color: #f1f1f1;
+    }
+
+    .overlay .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .overlay a {font-size: 20px}
+      .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+      }
+    }
+    </style>
+    <style>
+        .box {
+          position: relative;
+        }
+        .box-body {
+          position: relative;
+          height: 130px;
+          width: 150px;
+          margin-top: 60px;
+          margin-left: 125px;
+          background-color: #cc231e;
+          border-bottom-left-radius: 5%;
+          border-bottom-right-radius: 5%;
+          box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+          background: linear-gradient(#762c2c,#ff0303);
+        }
+        .box-body:active {
+          cursor: pointer;
+          -webkit-animation: box-body 1s forwards ease-in-out;
+                  animation: box-body 1s forwards ease-in-out;
+        }
+        .box-body:active .box-lid {
+          -webkit-animation: box-lid 1s forwards ease-in-out;
+                  animation: box-lid 1s forwards ease-in-out;
+        }
+        .box-body:active .box-bowtie::before {
+          -webkit-animation: box-bowtie-left 1.1s forwards ease-in-out;
+                  animation: box-bowtie-left 1.1s forwards ease-in-out;
+        }
+        .box-body:active .box-bowtie::after {
+          -webkit-animation: box-bowtie-right 1.1s forwards ease-in-out;
+                  animation: box-bowtie-right 1.1s forwards ease-in-out;
+        }
+        .box-body::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+                  transform: translateX(-50%);
+          width: 50px;
+          background: linear-gradient(#ffffff,#ffefa0)
+        }
+        .box-lid {
+          position: absolute;
+          z-index: 1;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+                  transform: translateX(-50%);
+          bottom: 90%;
+          height: 40px;
+          background-color: #cc231e;
+          height: 40px;
+          width: 200px;
+          border-radius: 5%;
+          box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
+        }
+        .box-lid::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+                  transform: translateX(-50%);
+          width: 50px;
+          background: linear-gradient(#ffefa0,#fff)
+        }
+        .box-bowtie {
+          z-index: 1;
+          height: 100%;
+        }
+        .box-bowtie::before, .box-bowtie::after {
+          content: "";
+          width: 83.3333333333px;
+          height: 83.3333333333px;
+          border: 16.6666666667px solid white;
+          border-radius: 50% 50% 0 50%;
+          position: absolute;
+          bottom: 99%;
+          z-index: -1;
+        }
+        .box-bowtie::before {
+          left: 50%;
+          -webkit-transform: translateX(-100%) skew(10deg, 10deg);
+                  transform: translateX(-100%) skew(10deg, 10deg);
+        }
+        .box-bowtie::after {
+          left: 50%;
+          -webkit-transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+                  transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+        }
+
+        @-webkit-keyframes box-lid {
+          0%,
+          42% {
+            -webkit-transform: translate3d(-50%, 0%, 0) rotate(0deg);
+                    transform: translate3d(-50%, 0%, 0) rotate(0deg);
+          }
+          60% {
+            -webkit-transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+                    transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+          }
+          90%, 100% {
+            -webkit-transform: translate3d(-119%, 225%, 0) rotate(-70deg);
+                    transform: translate3d(-119%, 225%, 0) rotate(-70deg);
+          }
+        }
+
+        @keyframes box-lid {
+          0%,
+          42% {
+            -webkit-transform: translate3d(-50%, 0%, 0) rotate(0deg);
+                    transform: translate3d(-50%, 0%, 0) rotate(0deg);
+          }
+          60% {
+            -webkit-transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+                    transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+          }
+          90%, 100% {
+            -webkit-transform: translate3d(-119%, 225%, 0) rotate(-70deg);
+                    transform: translate3d(-119%, 225%, 0) rotate(-70deg);
+          }
+        }
+        @-webkit-keyframes box-body {
+          0% {
+            -webkit-transform: translate3d(0%, 0%, 0) rotate(0deg);
+                    transform: translate3d(0%, 0%, 0) rotate(0deg);
+          }
+          25% {
+            -webkit-transform: translate3d(0%, 25%, 0) rotate(20deg);
+                    transform: translate3d(0%, 25%, 0) rotate(20deg);
+          }
+          50% {
+            -webkit-transform: translate3d(0%, -15%, 0) rotate(0deg);
+                    transform: translate3d(0%, -15%, 0) rotate(0deg);
+          }
+          70% {
+            -webkit-transform: translate3d(0%, 0%, 0) rotate(0deg);
+                    transform: translate3d(0%, 0%, 0) rotate(0deg);
+          }
+        }
+        @keyframes box-body {
+          0% {
+            -webkit-transform: translate3d(0%, 0%, 0) rotate(0deg);
+                    transform: translate3d(0%, 0%, 0) rotate(0deg);
+          }
+          25% {
+            -webkit-transform: translate3d(0%, 25%, 0) rotate(20deg);
+                    transform: translate3d(0%, 25%, 0) rotate(20deg);
+          }
+          50% {
+            -webkit-transform: translate3d(0%, -15%, 0) rotate(0deg);
+                    transform: translate3d(0%, -15%, 0) rotate(0deg);
+          }
+          70% {
+            -webkit-transform: translate3d(0%, 0%, 0) rotate(0deg);
+                    transform: translate3d(0%, 0%, 0) rotate(0deg);
+          }
+        }
+        @-webkit-keyframes box-bowtie-right {
+          0%,
+          50%,
+          75% {
+            -webkit-transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+                    transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+          }
+          90%,
+          100% {
+            -webkit-transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+                    transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+            box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.3);
+          }
+        }
+        @keyframes box-bowtie-right {
+          0%,
+          50%,
+          75% {
+            -webkit-transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+                    transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+          }
+          90%,
+          100% {
+            -webkit-transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+                    transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+            box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.3);
+          }
+        }
+        @-webkit-keyframes box-bowtie-left {
+          0% {
+            -webkit-transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+                    transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+          }
+          50%,
+          75% {
+            -webkit-transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+                    transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+          }
+          90%,
+          100% {
+            -webkit-transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+                    transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+          }
+        }
+        @keyframes box-bowtie-left {
+          0% {
+            -webkit-transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+                    transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+          }
+          50%,
+          75% {
+            -webkit-transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+                    transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+          }
+          90%,
+          100% {
+            -webkit-transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+                    transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+          }
+        }
+    
+    </style>
+    <script>
+    var i = 0;
+    var txt = 'Not？#@所以你愿意给我重新来过的机会吗？我希望你能再给我更多的时间重新了解你。';
+    //var txt = '最近开始你似乎想让我知难而退吧，对吗？#@我也曾纠结过是否要放弃，但我始终觉得可能会后悔不坚持下去而错过了这么有趣的你。#@一开始我对你心动时，我以为我遇到了我喜欢她，她也喜欢我的人，所以才时不时越过朋友的界限来确认你对我的感觉。#@我知道当时的我着急了，让你感到惶恐了，十分对不起。#@我并没有逾越的意思，我当时只是以为得好好把握机会，让你知道我是真心得想和你在一起的，而不是单纯的说而已，而是想让你知道我会真心待你。而对我来说“女朋友”这称呼，其实我只想能光明正大的的对你好，疼你而已。#@而你其实只是目前还没有准备好跟任何人交往对吗？#@我不介意等待，我还是会尽可能的打扰你，尽我能力打动你，虽然我对我自己还是有些自知自明的，是个并没有特别优点的人，也没什么幽默感能逗你开心，也是个聊天白痴，还是个直男，但我会尽可能做到你需要我时，我都在，也能保证我不会欺骗你。只希望你知道有个傻瓜在等你。#@或许你会觉得很困扰...#@但我希望你别感到困扰（有点强人所难？哈哈哈）#@因为实际上我想让我自己能在你心里占据点位置，而我更希望你之后是真心的喜欢才接受我的，而且对我来说适当的付出，并不一定要有回报的，因为对我来说最大的回报是你心里有我，况且我觉得你是值得珍惜的人 Why Not?#@所以你愿意给我更多的机会吗？我希望你能再给我更多的时间重新了解你，陪伴你。'
+    
+    var speed = 200;
+
+    function typeWriter() {
+      if (i < txt.length) {
+        if (txt.charAt(i) == '$'){
+            //new line
+            document.getElementById("demo").innerHTML += "<br>";
+            i++;
+            setTimeout(typeWriter, speed);
+        } else if (txt.charAt(i) == '@') {
+            //clean up paragraph
+            i++;
+            document.getElementById("demo").innerHTML = "";
+            setTimeout(typeWriter, speed);
+        } else if (txt.charAt(i) == '#') {
+            //sleep
+            i++;
+            setTimeout(typeWriter, 2500);
+        } else{
+            document.getElementById("demo").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+      }
+    }
+    </script>
+    <script>
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+      if(document.getElementById("demo").innerHTML == "所以你愿意给我更多的机会吗？我希望你能再给我更多的时间重新了解你，陪伴你。") {
+         document.getElementById('confirmationButton').style.display = 'block'; 
+      } else {
+         document.getElementById('confirmationButton').style.display = 'none';
+      }
+      document.getElementById("audio").play();
+    }, 100);
+    </script>
+    <script>
+    function openNav() {
+      document.getElementById("myNav").style.display = "block";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.display = "none";
+      typeWriter();
+    }
+    </script>
+    <script>
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+            document.getElementById("audio").play();
+        }, 100);
+    </script>
+    <script>
+    function clickThis() {
+        document.getElementById("thankyou").style.display = "block";
+    }
+    </script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+</head>
+<body>
+    <audio id="audio" autoplay>
+        <source src="./love.mp3" type="audio/mpeg">
+    </audio>
+    <div id="myNav" class="overlay">
+      <div class="overlay-content">
+        <div class="col-12 mt-5 d-flex justify-content-center">
+          <h1 id="headingText" class="headStyle">嘉雯, 这是送你的一个小小的惊喜<h1/>
+          <a href="javascript:void(0)" onclick="closeNav()">  
+          <div class="box">
+            <div class="box-body">
+              <div class="box-lid">
+                <div class="box-bowtie"></div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg">
+        
+        <div class="snow1"></div>
+        <div class="snow2"></div>
+        <div class="snow3"></div>
+        <section>
+            
+            <div class="w3-display-topmiddle">    
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()"></span>
+            </div>
+            
+            
+            <div class="w3-display-topmiddle">
+                
+                <div class="alignment">
+                    <p id="demo" class="contentText"></p>
+                    <br/>
+                    <div id="confirmationButton" class="confirmation">
+                        <img src="https://imgur.com/pkOaZs3.gif" alt="I Love You" style="width:100px;height:100px;margin-left:-15px">
+                        <br/>
+                        <br/>
+                        <button id="yes" style="margin-left:10px" onclick="clickThis()">愿意</button>
+                        <br/>
+                        <br/>
+                        <div id="thankyou" class="results">
+                            <img src="https://imgur.com/xZpthBV.gif" alt="I Love You" style="width:100px;height:100px;margin-left:-15px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
